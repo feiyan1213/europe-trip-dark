@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 德瑞瑞士之旅</title>
+    <title>2026 釜山濟州島之旅</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap">
@@ -236,7 +236,7 @@ body.day-switch .time-item{ opacity:0; transform:translateY(4px); animation:time
 @keyframes nodePop{ to{ opacity:1; transform:scale(1) } }
 body.edit-mode .time-item,.edit-mode .time-node{ opacity:1; transform:none; animation:none; }
 .time-header{ display:flex; align-items:center; cursor:pointer; user-select:none; }
-.time-text,.title-text{ user-select:text; }
+.time-text,.title-text{ user-select:text; white-space:pre-line; }
 .toggle-icon{ font-size:.9rem; color:var(--text-3); transition:transform .3s ease; display:inline-block; transform-origin:center; }
 .time-detail{
   max-height:0; transform:scaleY(0); transform-origin:top; opacity:0; overflow:hidden;
@@ -265,29 +265,26 @@ body.edit-mode .section-delete{ opacity:1; transform:translateX(0); color:var(--
 .section-add:hover{ background:var(--pill-bg) !important; }
 .section-delete:hover{ background:var(--danger-bg) !important; }
 .section-add:active,.section-delete:active{ transform:scale(.88) !important; }
-body:not(.edit-mode) .section-add,body:not(.edit-mode) .section-delete{ pointer-events:none; }
 body:not(.edit-mode){ --section-icon:0px; --item-gap:0px; --item-icon:0px; }
 body.edit-mode{ --section-icon:28px; --item-gap:32px; --item-icon:28px; }
 .item-row{ display:grid; grid-template-columns:var(--item-gap) 1fr var(--item-icon) var(--item-icon); align-items:center; transition:all .3s ease; }
 .item-content{ display:flex; align-items:center; gap:6px; }
-.item-handle{ opacity:0; cursor:grab; text-align:center; color:var(--text-3); font-size:.78rem; padding:2px 4px; border-radius:6px; transition:opacity .2s ease,background .15s ease; }
-body.edit-mode .item-handle{ opacity:1; }
+.item-handle{ opacity:0; pointer-events:none; cursor:grab; text-align:center; color:var(--text-3); font-size:.78rem; padding:2px 4px; border-radius:6px; transition:opacity .2s ease,background .15s ease; }
+body.edit-mode .item-handle{ opacity:1; pointer-events:auto; }
 .item-handle:hover{ background:var(--pill-bg); color:var(--text-2); }
 .item-handle:active{ cursor:grabbing; }
-body:not(.edit-mode) .item-handle{ pointer-events:none; }
 .item-edit,.item-delete{
-  opacity:0; background:transparent !important; border:none !important;
+  opacity:0; pointer-events:none; background:transparent !important; border:none !important;
   cursor:pointer; width:26px; height:26px;
   display:inline-flex; align-items:center; justify-content:center;
   padding:0 !important; border-radius:8px; font-size:.78rem;
   transition:opacity .25s ease,background .15s ease,transform .1s ease;
 }
-body.edit-mode .item-edit{ opacity:1; color:var(--text-3); }
-body.edit-mode .item-delete{ opacity:1; color:var(--danger-fg); }
+body.edit-mode .item-edit{ opacity:1; pointer-events:auto; color:var(--text-3); }
+body.edit-mode .item-delete{ opacity:1; pointer-events:auto; color:var(--danger-fg); }
 .item-edit:hover{ background:var(--pill-bg) !important; color:var(--text-2); }
 .item-delete:hover{ background:var(--danger-bg) !important; }
 .item-edit:active,.item-delete:active{ transform:scale(.88); }
-body:not(.edit-mode) .item-edit,body:not(.edit-mode) .item-delete{ pointer-events:none; }
 .item-editor{ background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; margin-top:8px; }
 .item-editor textarea{ background:var(--surface) !important; border:1px solid var(--border) !important; border-radius:8px; color:var(--text-1) !important; font-size:.85rem; padding:6px 10px; width:100%; resize:vertical; min-height:56px; }
 .item-editor label{ font-size:.78rem; color:var(--text-2); display:flex; align-items:center; gap:6px; margin-top:6px; }
@@ -373,7 +370,7 @@ body:not(.edit-mode) .time-text{ pointer-events:auto; }
 .exp-left-top{ display:flex; align-items:flex-start; justify-content:flex-start; gap:10px; }
 .exp-left-top .exp-cat{ min-width:0; }
 .more-btn.exp-more-left{ opacity:.55; padding:2px 4px; font-size:1rem; line-height:1; }
-.exp-note{ margin-top:4px; font-size:.85rem; opacity:.8; line-height:1.25; }
+.exp-note{ margin-top:4px; font-size:.85rem; opacity:.8; line-height:1.4; white-space:pre-wrap; word-break:break-word; }
 .day-group{ border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow-1); margin-bottom:10px; }
 .day-group-head{ padding:12px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; }
 .day-group-head:active{ transform:scale(.99); }
@@ -398,6 +395,7 @@ body:not(.edit-mode) .time-text{ pointer-events:auto; }
 .budget-popover .pop-row{ display:flex; gap:8px; align-items:center; }
 .budget-popover input{ width:100%; border-radius:10px; border:1px solid var(--border); padding:6px 10px; font-size:.85rem; outline:none; background:var(--surface); color:var(--text-1); }
 .budget-popover input::placeholder{ color:var(--text-3); }
+.budget-popover textarea::placeholder{ color:var(--text-3); }
 .budget-popover .pop-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
 .budget-popover .pop-btn{ border:none; background:transparent; padding:6px 8px; border-radius:10px; font-size:.78rem; font-weight:900; cursor:pointer; color:var(--text-2); }
 .budget-popover .pop-btn.primary{ background:var(--text-1); color:var(--surface); padding:6px 10px; }
@@ -612,8 +610,8 @@ input,textarea{ font-size:.95rem; }
 
 <div class="sticky-top bg-white border-bottom shadow-sm">
   <div class="p-3 text-center">
-    <h1 class="trip-title">SEP 2026 EUROPE</h1>
-    <small class="trip-subtitle d-block mb-2">Germany &bull; Norway Cruise &bull; Switzerland &bull; Italy</small>
+    <h1 class="trip-title">MAY 2026 KOREA</h1>
+    <small class="trip-subtitle d-block mb-2">Busan &bull; Jeju Island</small>
     <div class="d-flex justify-content-center align-items-center gap-3 py-1 position-relative timebar">
       <div class="text-end time-col">
         <span id="tw-date-label" class="time-date"></span>
@@ -624,7 +622,7 @@ input,textarea{ font-size:.95rem; }
       <div class="text-start time-col">
         <span id="eu-time" class="time-clock time-clock-strong">--:--</span>
         <span id="eu-date-label" class="time-date"></span>
-        <small class="time-loc time-loc-strong">EUROPE</small>
+        <small class="time-loc time-loc-strong">KOREA</small>
       </div>
       <button id="todayBtn" class="today-float" onclick="jumpToToday()" title="跳轉至今日">Today &middot; <span id="todayDate">--/--</span></button>
     </div>
@@ -637,25 +635,13 @@ input,textarea{ font-size:.95rem; }
 <div id="itinerary" class="content-section active">
   <div class="day-nav-container">
     <div class="day-tab active" onclick="switchDay('all',this)"><span class="day-week">ALL</span><span class="day-num">總覽</span></div>
-    <div class="day-tab" onclick="switchDay('910',this)"><span class="day-week">THU</span><span class="day-num">10</span></div>
-    <div class="day-tab" onclick="switchDay('911',this)"><span class="day-week">FRI</span><span class="day-num">11</span></div>
-    <div class="day-tab" onclick="switchDay('912',this)"><span class="day-week">SAT</span><span class="day-num">12</span></div>
-    <div class="day-tab" onclick="switchDay('913',this)"><span class="day-week">SUN</span><span class="day-num">13</span></div>
-    <div class="day-tab" onclick="switchDay('914',this)"><span class="day-week">MON</span><span class="day-num">14</span></div>
-    <div class="day-tab" onclick="switchDay('915',this)"><span class="day-week">TUE</span><span class="day-num">15</span></div>
-    <div class="day-tab" onclick="switchDay('916',this)"><span class="day-week">WED</span><span class="day-num">16</span></div>
-    <div class="day-tab" onclick="switchDay('917',this)"><span class="day-week">THU</span><span class="day-num">17</span></div>
-    <div class="day-tab" onclick="switchDay('918',this)"><span class="day-week">FRI</span><span class="day-num">18</span></div>
-    <div class="day-tab" onclick="switchDay('919',this)"><span class="day-week">SAT</span><span class="day-num">19</span></div>
-    <div class="day-tab" onclick="switchDay('920',this)"><span class="day-week">SUN</span><span class="day-num">20</span></div>
-    <div class="day-tab" onclick="switchDay('921',this)"><span class="day-week">MON</span><span class="day-num">21</span></div>
-    <div class="day-tab" onclick="switchDay('922',this)"><span class="day-week">TUE</span><span class="day-num">22</span></div>
-    <div class="day-tab" onclick="switchDay('923',this)"><span class="day-week">WED</span><span class="day-num">23</span></div>
-    <div class="day-tab" onclick="switchDay('924',this)"><span class="day-week">THU</span><span class="day-num">24</span></div>
-    <div class="day-tab" onclick="switchDay('925',this)"><span class="day-week">FRI</span><span class="day-num">25</span></div>
-    <div class="day-tab" onclick="switchDay('926',this)"><span class="day-week">SAT</span><span class="day-num">26</span></div>
-    <div class="day-tab" onclick="switchDay('927',this)"><span class="day-week">SUN</span><span class="day-num">27</span></div>
-    <div class="day-tab" onclick="switchDay('928',this)"><span class="day-week">MON</span><span class="day-num">28</span></div>
+    <div class="day-tab" onclick="switchDay('507',this)"><span class="day-week">THU</span><span class="day-num">7</span></div>
+    <div class="day-tab" onclick="switchDay('508',this)"><span class="day-week">FRI</span><span class="day-num">8</span></div>
+    <div class="day-tab" onclick="switchDay('509',this)"><span class="day-week">SAT</span><span class="day-num">9</span></div>
+    <div class="day-tab" onclick="switchDay('510',this)"><span class="day-week">SUN</span><span class="day-num">10</span></div>
+    <div class="day-tab" onclick="switchDay('511',this)"><span class="day-week">MON</span><span class="day-num">11</span></div>
+    <div class="day-tab" onclick="switchDay('512',this)"><span class="day-week">TUE</span><span class="day-num">12</span></div>
+    <div class="day-tab" onclick="switchDay('513',this)"><span class="day-week">WED</span><span class="day-num">13</span></div>
   </div>
 
   <!-- 住宿條帶：fixed，JS 設定正確 top -->
@@ -673,30 +659,18 @@ input,textarea{ font-size:.95rem; }
 
   <div id="day-all" class="day-content active">
     <div class="card-custom">
-      <h5 class="fw-bold">2026 德國、挪威、瑞士 &#x1F1EA;&#x1F1FA;</h5>
-      <p class="small text-muted">高雄出發，橫跨德國、挪威郵輪與瑞士深度遊。</p>
-      <div class="badge bg-dark badge-trip">Total 19 Days</div>
+      <h5 class="fw-bold">2026 釜山・濟州島 &#x1F1F0;&#x1F1F7;</h5>
+      <p class="small text-muted">高雄出發，探索韓國釜山海港風情與濟州島自然美景。</p>
+      <div class="badge bg-dark badge-trip">Total 7 Days</div>
     </div>
   </div>
-  <div id="day-910" class="day-content" data-day="910"><div class="card-custom timeline-container"></div></div>
-  <div id="day-911" class="day-content" data-day="911"><div class="card-custom timeline-container"></div></div>
-  <div id="day-912" class="day-content" data-day="912"><div class="card-custom timeline-container"></div></div>
-  <div id="day-913" class="day-content" data-day="913"><div class="card-custom timeline-container"></div></div>
-  <div id="day-914" class="day-content" data-day="914"><div class="card-custom timeline-container"></div></div>
-  <div id="day-915" class="day-content" data-day="915"><div class="card-custom timeline-container"></div></div>
-  <div id="day-916" class="day-content" data-day="916"><div class="card-custom timeline-container"></div></div>
-  <div id="day-917" class="day-content" data-day="917"><div class="card-custom timeline-container"></div></div>
-  <div id="day-918" class="day-content" data-day="918"><div class="card-custom timeline-container"></div></div>
-  <div id="day-919" class="day-content" data-day="919"><div class="card-custom timeline-container"></div></div>
-  <div id="day-920" class="day-content" data-day="920"><div class="card-custom timeline-container"></div></div>
-  <div id="day-921" class="day-content" data-day="921"><div class="card-custom timeline-container"></div></div>
-  <div id="day-922" class="day-content" data-day="922"><div class="card-custom timeline-container"></div></div>
-  <div id="day-923" class="day-content" data-day="923"><div class="card-custom timeline-container"></div></div>
-  <div id="day-924" class="day-content" data-day="924"><div class="card-custom timeline-container"></div></div>
-  <div id="day-925" class="day-content" data-day="925"><div class="card-custom timeline-container"></div></div>
-  <div id="day-926" class="day-content" data-day="926"><div class="card-custom timeline-container"></div></div>
-  <div id="day-927" class="day-content" data-day="927"><div class="card-custom timeline-container"></div></div>
-  <div id="day-928" class="day-content" data-day="928"><div class="card-custom timeline-container"></div></div>
+  <div id="day-507" class="day-content" data-day="507"><div class="card-custom timeline-container"></div></div>
+  <div id="day-508" class="day-content" data-day="508"><div class="card-custom timeline-container"></div></div>
+  <div id="day-509" class="day-content" data-day="509"><div class="card-custom timeline-container"></div></div>
+  <div id="day-510" class="day-content" data-day="510"><div class="card-custom timeline-container"></div></div>
+  <div id="day-511" class="day-content" data-day="511"><div class="card-custom timeline-container"></div></div>
+  <div id="day-512" class="day-content" data-day="512"><div class="card-custom timeline-container"></div></div>
+  <div id="day-513" class="day-content" data-day="513"><div class="card-custom timeline-container"></div></div>
 </div>
 
 <div id="budget" class="content-section">
@@ -707,7 +681,7 @@ input,textarea{ font-size:.95rem; }
     </div>
     <div class="input-group input-group-sm mb-2">
       <select id="exp-curr" class="form-select" style="max-width:92px" onchange="onBudgetCurrencyChange()">
-        <option value="CHF">CHF</option><option value="EUR">EUR</option><option value="HKD">HKD</option><option value="TWD">TWD</option>
+        <option value="KRW">KRW</option><option value="USD">USD</option><option value="TWD">TWD</option>
       </select>
       <input type="number" id="exp-amt" class="form-control" placeholder="金額">
     </div>
@@ -717,8 +691,8 @@ input,textarea{ font-size:.95rem; }
     </div>
     <div id="manualRateWrap" style="display:none" class="mt-2">
       <div class="input-group input-group-sm">
-        <span class="input-group-text" id="manualRateLabel">CHF&rarr;TWD</span>
-        <input type="number" id="manualRateInput" class="form-control" placeholder="手動匯率" step="0.01">
+        <span class="input-group-text" id="manualRateLabel">KRW&rarr;TWD</span>
+        <input type="number" id="manualRateInput" class="form-control" placeholder="手動匯率" step="0.0001">
       </div>
     </div>
     <hr class="my-3">
@@ -743,7 +717,7 @@ input,textarea{ font-size:.95rem; }
   </div>
   <div class="card-custom">
     <div class="budget-today-head">
-      <div><div class="budget-today-date" id="todayLabel">Today</div><div class="budget-today-sub" id="todaySub">CHF 0 | EUR 0 | HKD 0</div></div>
+      <div><div class="budget-today-date" id="todayLabel">Today</div><div class="budget-today-sub" id="todaySub">KRW 0 | USD 0</div></div>
       <div class="budget-today-total">NT$ <span id="todayTotal">0</span></div>
     </div>
     <div class="mt-3" id="todayList"></div>
@@ -752,7 +726,7 @@ input,textarea{ font-size:.95rem; }
   <div class="budget-sum">
     <small class="budget-sum-sub">旅程總支出 (TWD)</small>
     <div class="h1 my-2">NT$ <span id="total-twd">0</span></div>
-    <div class="small budget-sum-breakdown">CHF: <span id="total-chf">0</span> | EUR: <span id="total-eur">0</span> | HKD: <span id="total-hkd">0</span></div>
+    <div class="small budget-sum-breakdown">KRW: <span id="total-krw">0</span> | USD: <span id="total-usd">0</span></div>
   </div>
   <button class="btn btn-link btn-sm w-100 text-muted mt-4" onclick="clearAll()">清空所有記帳紀錄</button>
 </div>
@@ -795,11 +769,18 @@ input,textarea{ font-size:.95rem; }
   <div class="day-label">&#x1F517; 快速連結與電話</div>
   <div class="card-custom">
     <h6 class="fw-bold">緊急連絡</h6>
-    <p class="small mb-2">外交部急難救助：+886-800-085-095</p>
+    <p class="small mb-1">外交部急難救助：+886-800-085-095</p>
+    <p class="small mb-1">韓國報警：112 ｜ 救護車/火警：119</p>
+    <p class="small mb-2">駐韓台北代表部：+82-2-399-2767</p>
     <hr>
     <h6 class="fw-bold">常用連結</h6>
-    <div class="d-grid gap-2" id="quicklinks-container"></div>
-    <button type="button" class="btn btn-sm btn-secondary-soft w-100 mt-2" onclick="addQuickLinkPrompt()"><i class="fas fa-plus"></i> 新增連結</button>
+    <div class="d-grid gap-2">
+      <a href="https://www.letskorail.com" target="_blank" class="btn btn-sm btn-secondary-soft text-start">Korail 韓國鐵路訂票</a>
+      <a href="https://www.weather.go.kr/w/index.do" target="_blank" class="btn btn-sm btn-secondary-soft text-start">KMA 韓國氣象廳天氣</a>
+      <a href="https://www.visitkorea.or.kr" target="_blank" class="btn btn-sm btn-secondary-soft text-start">韓國觀光公社 VisitKorea</a>
+      <a href="https://www.airport.co.kr/gimhaeeng/main.do" target="_blank" class="btn btn-sm btn-secondary-soft text-start">金海國際機場（釜山）</a>
+      <a href="https://www.airport.co.kr/jejueng/main.do" target="_blank" class="btn btn-sm btn-secondary-soft text-start">濟州國際機場</a>
+    </div>
   </div>
   <div class="card-custom" id="sync-center">
     <div class="text-center mb-3"><h6 class="fw-bold mb-1">隊友同步中心</h6><small class="text-muted">同步行程、記帳、行李、收藏</small></div>
@@ -835,6 +816,14 @@ input,textarea{ font-size:.95rem; }
             <span class="btn-label-default">產生同步碼</span><span class="btn-label-success">✓ 已複製</span>
           </button>
         </div>
+<button type="button"
+        class="btn btn-sm btn-secondary-soft w-100 mt-2"
+        id="btn-download-code"
+        onclick="downloadSyncCode()"
+        style="display:none">
+  <i class="fas fa-file-download"></i> 下載 TXT 檔案
+</button>
+
       </div>
     </div>
     <div id="sync-pane-receive">
@@ -858,9 +847,12 @@ input,textarea{ font-size:.95rem; }
             <i class="fas fa-paste text-primary"></i><span class="paste-check">✓</span>
           </span>
         </div>
+<input type="file" id="sync-file-input" accept=".txt" style="display:none">
+<button class="btn btn-sm btn-secondary-soft w-100 mt-2"
+        onclick="document.getElementById('sync-file-input').click()">
+  <i class="fas fa-file-import"></i> 從 TXT 檔案匯入
+</button>
       </div>
-      <input type="file" id="sync-file-input" accept=".txt" style="display:none" onchange="handleSyncFileImport(event)">
-      <button type="button" class="btn btn-sm btn-secondary-soft w-100 mb-2" onclick="document.getElementById('sync-file-input').click()"><i class="fas fa-file-import"></i> 匯入 TXT 檔案</button>
       <button class="btn btn-sm btn-secondary-soft w-100 mb-2" onclick="analyzeSyncContent()"><i class="fas fa-search"></i> 分析同步內容</button>
       <div class="small text-muted mb-2" id="sync-recv-preview">（分析後會顯示將更新內容）</div>
       <div id="sync-recv-actions" class="d-none mb-2">
@@ -917,18 +909,13 @@ input,textarea{ font-size:.95rem; }
 // ===== 住宿資料 =====
 const HOTEL_DATA_KEY = 'trip_hotel_data';
 const hotelDataBuiltIn = {
-  "911":{ name:"Hotel Liegeplatz 13 Kiel by Premiere Classe", map:"https://maps.app.goo.gl/uiViyTyUQAfHDNbq6" },
-  "912":{ name:"MSC Cruise Ship", map:"https://maps.app.goo.gl/yAHd1n7yvGv2XG7m8" },
-  "919":{ name:"Barabas Luzern", map:"https://maps.app.goo.gl/NdmS1o8y9ZsDfiYu5" },
-  "920":{ name:"Hotel Victoria Lauberhorn Wengen", map:"https://maps.app.goo.gl/JUk59ZPRiiRCN5Aw9" },
-  "921":{ name:"Hotel Victoria Lauberhorn Wengen", map:"https://maps.app.goo.gl/JUk59ZPRiiRCN5Aw9" },
-  "922":{ name:"Hotel Victoria Lauberhorn Wengen", map:"https://maps.app.goo.gl/JUk59ZPRiiRCN5Aw9" },
-  "923":{ name:"Zermatt Hotel Alpina", map:"https://maps.app.goo.gl/vPqfrLinN6M45mbN8" },
-  "924":{ name:"Zermatt Hotel Alpina", map:"https://maps.app.goo.gl/vPqfrLinN6M45mbN8" },
-  "925":{ name:"Zermatt Hotel Alpina", map:"https://maps.app.goo.gl/vPqfrLinN6M45mbN8" },
-  "926":{ name:"Hostel INN PETRELLA Milan", map:"https://maps.app.goo.gl/E8gig159c8U69n2x9" },
-  "927":{ name:"Milan Malpensa Airport MXP", map:"https://maps.app.goo.gl/PuzkC7L5KWpmE93v5" },
-  "928":{ name:"Home", map:"https://maps.app.goo.gl/UNuPB1CaheDYPV9h9" }
+  "507":{ name:"釜山住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "508":{ name:"釜山住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "509":{ name:"濟州島住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "510":{ name:"濟州島住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "511":{ name:"濟州島住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "512":{ name:"釜山住宿（待填入）", map:"https://maps.app.goo.gl/" },
+  "513":{ name:"Home", map:"https://maps.app.goo.gl/" }
 };
 function loadHotelData(){ try{ return JSON.parse(localStorage.getItem(HOTEL_DATA_KEY)||'{}'); }catch(e){ return {}; } }
 function saveHotelData(d){ localStorage.setItem(HOTEL_DATA_KEY,JSON.stringify(d)); }
@@ -1026,9 +1013,9 @@ function updateClocks(){
   var now = new Date();
   var opts = { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false };
   var twStr = now.toLocaleTimeString('zh-TW', Object.assign({},opts,{timeZone:'Asia/Taipei'}));
-  var euStr = now.toLocaleTimeString('zh-TW', Object.assign({},opts,{timeZone:'Europe/Berlin'}));
+  var euStr = now.toLocaleTimeString('zh-TW', Object.assign({},opts,{timeZone:'Asia/Seoul'}));
   var twDay = parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Asia/Taipei'}).format(now));
-  var euDay = parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Europe/Berlin'}).format(now));
+  var euDay = parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Asia/Seoul'}).format(now));
   var twEl=document.getElementById('tw-time'), euEl=document.getElementById('eu-time');
   var twLbl=document.getElementById('tw-date-label'), euLbl=document.getElementById('eu-date-label');
   if(twEl) twEl.innerText=twStr;
@@ -1082,7 +1069,7 @@ function switchDay(dayId, el){
 
 // ===== 記帳 =====
 var expenses = JSON.parse(localStorage.getItem('trip_v2026')||'[]');
-var rates = {CHF:null,EUR:null,HKD:null};
+var rates = {KRW:null,USD:null};
 var ratesStatus = 'loading';
 var lastRateFetchedAt = 0;
 var openDaySet = new Set(JSON.parse(localStorage.getItem('trip_budget_open_days')||'[]'));
@@ -1102,11 +1089,10 @@ function toMoney(n){ return Math.round(num(n)).toLocaleString(); }
 function fmtHHMM(ts){ if(!ts) return ''; var d=new Date(ts); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
 function payIcon(p){ if(p==='cash') return 'fa-coins'; if(p==='mobile') return 'fa-mobile-screen-button'; if(p==='other') return 'fa-shapes'; return 'fa-credit-card'; }
 
-function onBudgetCurrencyChange(){ updateRateHintUI(); updateManualRateLabel(); }
-function updateManualRateLabel(){
-  var curr=(document.getElementById('exp-curr')||{}).value||'CHF';
-  var lbl=document.getElementById('manualRateLabel');
-  if(lbl) lbl.innerHTML=curr+'&rarr;TWD';
+function onBudgetCurrencyChange(){
+  var curr=(document.getElementById('exp-curr')||{}).value||'TWD';
+  var lbl=document.getElementById('manualRateLabel'); if(lbl) lbl.innerText=curr+'→TWD';
+  updateRateHintUI();
 }
 function setPayMethod(pay,btnEl){
   currentPay=pay; localStorage.setItem('trip_budget_last_pay',pay);
@@ -1128,8 +1114,8 @@ function updateRateHintUI(){
   if(curr==='TWD'){ hint.innerText='匯率：TWD'; return; }
   var r=rates[curr]; var manual=parseFloat((document.getElementById('manualRateInput')||{}).value);
   var t=fmtHHMM(lastRateFetchedAt); var tLabel=t?'<span class="ms-2"><i class="far fa-clock ms-1 opacity-75"></i> '+t+'</span>':'';
-  if(Number.isFinite(manual)&&manual>0){ hint.innerText='匯率：'+curr+' → TWD '+manual.toFixed(2)+'（手動）'; return; }
-  if(Number.isFinite(r)){ hint.innerHTML='匯率：'+curr+' → TWD '+r.toFixed(2)+tLabel+(ratesStatus==='offline'?' ⚠':''); return; }
+  if(Number.isFinite(manual)&&manual>0){ hint.innerText='匯率：'+curr+' → TWD '+manual.toFixed(curr==='KRW'?4:2)+'（手動）'; return; }
+  if(Number.isFinite(r)){ hint.innerHTML='匯率：'+curr+' → TWD '+r.toFixed(curr==='KRW'?4:2)+tLabel+(ratesStatus==='offline'?' ⚠':''); return; }
   hint.innerText='匯率：無法取得，請手動輸入';
 }
 async function refreshRates(showToast){
@@ -1140,9 +1126,8 @@ async function refreshRates(showToast){
     var res=await fetch('https://open.er-api.com/v6/latest/TWD',{cache:'no-store'});
     var data=await res.json();
     if(!data||!data.rates) throw new Error('no rates');
-    rates.CHF=data.rates.CHF?(1/data.rates.CHF):null;
-    rates.EUR=data.rates.EUR?(1/data.rates.EUR):null;
-    rates.HKD=data.rates.HKD?(1/data.rates.HKD):null;
+    rates.KRW=data.rates.KRW?(1/data.rates.KRW):null;
+    rates.USD=data.rates.USD?(1/data.rates.USD):null;
     ratesStatus='ok'; lastRateFetchedAt=Date.now();
     localStorage.setItem('trip_budget_rates_cache',JSON.stringify({at:lastRateFetchedAt,rates:rates}));
     if(showToast) showRateToast('✓ 匯率已更新','var(--bs-primary)');
@@ -1190,22 +1175,21 @@ function render(){
   var byDay=new Map();
   expenses.forEach(function(e){ if(!e.localDay){ e.localDay=getLocalDayKey(new Date(e.createdAt||Date.now())); } if(!e.pay) e.pay='card'; if(!Number.isFinite(num(e.twdAtSave))){ var r=num(e.rateAtSave)||1; e.twdAtSave=(e.curr==='TWD')?num(e.amt):(num(e.amt)*r); } var k=e.localDay; if(!byDay.has(k)) byDay.set(k,[]); byDay.get(k).push(e); });
   var dayKeys=Array.from(byDay.keys()).sort(function(a,b){ return a<b?1:-1; });
-  var tTWD=0,tCHF=0,tEUR=0,tHKD=0;
-  expenses.forEach(function(e){ tTWD+=num(e.twdAtSave); if(e.curr==='CHF') tCHF+=num(e.amt); if(e.curr==='EUR') tEUR+=num(e.amt); if(e.curr==='HKD') tHKD+=num(e.amt); });
+  var tTWD=0,tKRW=0,tUSD=0;
+  expenses.forEach(function(e){ tTWD+=num(e.twdAtSave); if(e.curr==='KRW') tKRW+=num(e.amt); if(e.curr==='USD') tUSD+=num(e.amt); });
   document.getElementById('total-twd').innerText=toMoney(tTWD);
-  document.getElementById('total-chf').innerText=tCHF.toFixed(1);
-  document.getElementById('total-eur').innerText=tEUR.toFixed(1);
-  document.getElementById('total-hkd').innerText=tHKD.toFixed(1);
+  document.getElementById('total-krw').innerText=Math.round(tKRW).toLocaleString();
+  document.getElementById('total-usd').innerText=tUSD.toFixed(2);
   var todayItems=byDay.get(todayKey)||[];
-  var dTWD=0,dCHF=0,dEUR=0,dHKD=0;
-  todayItems.forEach(function(e){ dTWD+=num(e.twdAtSave); if(e.curr==='CHF') dCHF+=num(e.amt); if(e.curr==='EUR') dEUR+=num(e.amt); if(e.curr==='HKD') dHKD+=num(e.amt); });
+  var dTWD=0,dKRW=0,dUSD=0;
+  todayItems.forEach(function(e){ dTWD+=num(e.twdAtSave); if(e.curr==='KRW') dKRW+=num(e.amt); if(e.curr==='USD') dUSD+=num(e.amt); });
   var tTot=document.getElementById('todayTotal'); if(tTot) tTot.innerText=toMoney(dTWD);
-  var tSub=document.getElementById('todaySub'); if(tSub) tSub.innerText='CHF '+dCHF.toFixed(1)+' | EUR '+dEUR.toFixed(1)+' | HKD '+dHKD.toFixed(1);
+  var tSub=document.getElementById('todaySub'); if(tSub) tSub.innerText='KRW '+Math.round(dKRW).toLocaleString()+' | USD '+dUSD.toFixed(2);
   var todayListEl=document.getElementById('todayList');
   if(todayListEl){ todayListEl.innerHTML=todayItems.length?todayItems.slice().sort(function(a,b){return a.createdAt<b.createdAt?1:-1;}).map(renderExpCard).join(''):'<div class="text-center small text-muted py-2">今天尚無記帳</div>'; }
   var dgEl=document.getElementById('dayGroups');
   if(dgEl){ var other=dayKeys.filter(function(k){ return k!==todayKey; }); dgEl.innerHTML=other.length?other.map(function(k){ return renderDayGroup(k,byDay.get(k)); }).join(''):'<div class="text-center small text-muted py-2">尚無其他日期紀錄</div>'; }
-  setPayMethod(currentPay,null); updateRateHintUI(); renderTimeline();
+  setPayMethod(currentPay,null); updateRateHintUI();
 }
 function renderExpCard(e){
   return '<div class="card-custom mb-2"><div class="exp-row"><div class="exp-left"><div class="exp-left-top"><div class="exp-cat">'+escapeHtml(e.cat||'其他')+'</div><button class="more-btn exp-more-left" data-more-btn="1" onclick="openMoreMenu('+e.id+',this)">&hellip;</button></div>'+(e.note?'<div class="exp-note">'+escapeHtml(e.note)+'</div>':'')+'</div><div class="exp-right"><div class="exp-right-top"><i class="fa-solid '+payIcon(e.pay)+' pay-ic exp-pay-ic"></i><div class="exp-money"><div class="exp-amt"><span>'+num(e.amt).toLocaleString(undefined,{maximumFractionDigits:1})+'</span><span>'+escapeHtml(e.curr||'TWD')+'</span></div><div class="exp-twd">NT$ '+toMoney(e.twdAtSave)+'</div></div></div></div></div></div>';
@@ -1237,17 +1221,40 @@ function openEditPopover(expId,anchorBtn){
   pop.querySelector('input[data-role="day"]').addEventListener('keydown',function(ev){ if(ev.key==='Enter'){ ev.preventDefault(); saveEditedDay(expId,ev.target.value.trim()); } });
 }
 document.addEventListener('click',function(ev){ if(!activePop||!activePop.el) return; if(!activePop.el.contains(ev.target)&&!ev.target.closest('.more-menu')&&!ev.target.closest('[data-more-btn="1"]')) closeEditPopover(); });
+
+function openEditNotePopover(expId,anchorBtn){
+  closeEditPopover();
+  var e=expenses.find(function(x){ return x.id===expId; }); if(!e) return;
+  var pop=document.createElement('div'); pop.className='budget-popover'; pop.dataset.popover='budget-note';
+  pop.innerHTML='<div class="pop-title">備註</div><div class="pop-row"><textarea data-role="note" rows="3" placeholder="輸入備註（可換行）" style="width:100%;resize:vertical;border-radius:10px;border:1px solid var(--border);padding:6px 10px;font-size:.85rem;background:var(--surface);color:var(--text-1);outline:none;font-family:inherit;line-height:1.45"></textarea></div><div class="pop-actions"><button type="button" class="pop-btn" data-act="cancel">取消</button><button type="button" class="pop-btn primary" data-act="save">保存</button></div>';
+  pop.querySelector('textarea[data-role="note"]').value = e.note||'';
+  var rect=anchorBtn.getBoundingClientRect(),sx=window.scrollX||0,sy=window.scrollY||0;
+  pop.style.left=(sx+rect.left)+'px'; pop.style.top=(sy+rect.bottom+6)+'px';
+  document.body.appendChild(pop); activePop={id:expId,el:pop};
+  setTimeout(function(){ var pr=pop.getBoundingClientRect(); if(pr.left<8) pop.style.left=(sx+8)+'px'; if(pr.right>window.innerWidth-8) pop.style.left=(sx+window.innerWidth-pr.width-8)+'px'; if(pr.bottom>window.innerHeight-8) pop.style.top=(sy+rect.top-pr.height-6)+'px'; },0);
+  var ta=pop.querySelector('textarea[data-role="note"]');
+  ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length);
+  pop.querySelector('[data-act="cancel"]').addEventListener('click',closeEditPopover);
+  pop.querySelector('[data-act="save"]').addEventListener('click',function(){
+    var idx=expenses.findIndex(function(x){ return x.id===expId; }); if(idx<0) return;
+    expenses[idx].note=ta.value;
+    localStorage.setItem('trip_v2026',JSON.stringify(expenses));
+    closeEditPopover(); render();
+  });
+  ta.addEventListener('keydown',function(ev){ if(ev.key==='Enter'&&(ev.ctrlKey||ev.metaKey)){ ev.preventDefault(); pop.querySelector('[data-act="save"]').click(); } });
+}
 var activeMoreMenu=null;
 function closeMoreMenu(){ if(activeMoreMenu) activeMoreMenu.remove(); activeMoreMenu=null; }
 function openMoreMenu(expId,anchorBtn){
   closeMoreMenu(); closeEditPopover();
   var menu=document.createElement('div'); menu.className='more-menu';
-  menu.innerHTML='<div class="menu-item" data-act="edit"><i class="fas fa-pen"></i> 編輯付款日</div><div class="menu-item danger" data-act="delete"><i class="fas fa-trash-alt"></i> 刪除</div>';
+  menu.innerHTML='<div class="menu-item" data-act="edit-note"><i class="fas fa-comment-alt"></i> 編輯備註</div><div class="menu-item" data-act="edit"><i class="fas fa-pen"></i> 編輯付款日</div><div class="menu-item danger" data-act="delete"><i class="fas fa-trash-alt"></i> 刪除</div>';
   var rect=anchorBtn.getBoundingClientRect(),sx=window.scrollX||0,sy=window.scrollY||0;
   menu.style.left=(sx+rect.left)+'px'; menu.style.top=(sy+rect.bottom+6)+'px';
   document.body.appendChild(menu);
   var mr=menu.getBoundingClientRect(); var left=sx+rect.left; left=Math.max(sx+8,Math.min(left,sx+document.documentElement.clientWidth-mr.width-8)); menu.style.left=left+'px';
   activeMoreMenu=menu;
+  menu.querySelector('[data-act="edit-note"]').onclick=function(){ closeMoreMenu(); openEditNotePopover(expId,anchorBtn); };
   menu.querySelector('[data-act="edit"]').onclick=function(){ closeMoreMenu(); openEditPopover(expId,anchorBtn); };
   menu.querySelector('[data-act="delete"]').onclick=function(){ closeMoreMenu(); deleteExp(expId); };
 }
@@ -1262,7 +1269,7 @@ function toggleDayGroup(dayKey){
   localStorage.setItem('trip_budget_open_days',JSON.stringify(Array.from(openDaySet)));
   var el=document.querySelector('.day-group[data-day="'+dayKey+'"]'); if(el) el.classList.toggle('open');
 }
-function initBudgetPageIfNeeded(){ setPayMethod(currentPay,null); updateRateHintUI(); updateManualRateLabel(); if(!lastRateFetchedAt) refreshRates(false); }
+function initBudgetPageIfNeeded(){ setPayMethod(currentPay,null); updateRateHintUI(); if(ratesStatus==='loading'||(ratesStatus==='offline'&&Date.now()-lastRateFetchedAt>300000)) refreshRates(false); }
 
 // ===== 行李 =====
 var PACK_TEMPLATE_KEY='trip_pack_template',PACK_TRIP_KEY='trip_pack_trip_current',PACK_VIEW_KEY='trip_pack_view',PACK_CARRY_KEY='trip_pack_carry_mode',PACK_CARRY_CHECK_KEY='trip_pack_carry_checked';
@@ -1318,19 +1325,6 @@ function addItemToCat(catIdx){
   var n=prompt('在「'+cat.category+'」新增項目：'); if(!n||!n.trim()) return;
   cat.items=cat.items||[]; cat.items.push({text:n.trim(),checked:false,carry:false}); saveActivePack(); renderPackList(); updateLocalSummary();
 }
-function renameCategoryPrompt(ci){
-  var active=getActivePackRef(); var c=active[ci]; if(!c) return;
-  var n=prompt('修改分類名稱：',c.category); if(!n||!n.trim()) return;
-  var newName=n.trim();
-  if(active.some(function(x){ return x!==c && x.category===newName; })){ alert('此類別已存在'); return; }
-  c.category=newName; saveActivePack(); renderPackList(); updateLocalSummary();
-}
-function editItemText(ci,ii){
-  var active=getActivePackRef(); var c=active[ci]; if(!c||!c.items||!c.items[ii]) return;
-  var it=c.items[ii];
-  var n=prompt('編輯項目文字：',it.text); if(!n||!n.trim()) return;
-  it.text=n.trim(); saveActivePack(); renderPackList(); updateLocalSummary();
-}
 function toggleItem(ci,ii){ var a=getActivePackRef(); var c=a[ci]; if(!c||!c.items||!c.items[ii]) return; c.items[ii].checked=!c.items[ii].checked; saveActivePack(); renderPackList(); }
 function deleteCategory(ci){ var a=getActivePackRef(); var c=a[ci]; if(!c) return; if(confirm('確定要刪除「'+c.category+'」整個分類嗎？')){ a.splice(ci,1); saveActivePack(); renderPackList(); updateLocalSummary(); } }
 function deleteSingleItem(ci,ii){ var a=getActivePackRef(); var c=a[ci]; if(!c||!c.items) return; c.items.splice(ii,1); saveActivePack(); renderPackList(); updateLocalSummary(); }
@@ -1339,7 +1333,7 @@ var activeCarryMenu=null;
 function closeCarryMenu(){ if(activeCarryMenu) activeCarryMenu.remove(); activeCarryMenu=null; }
 document.addEventListener('click',function(e){ if(activeCarryMenu&&activeCarryMenu.contains(e.target)) return; if(e.target&&e.target.closest&&e.target.closest('.carry-more-btn')) return; closeCarryMenu(); });
 function toggleCarryFlag(ci,ii){ if(packView!=='trip') return; var c=packTrip[ci]; if(!c||!c.items||!c.items[ii]) return; c.items[ii].carry=!c.items[ii].carry; saveJSON(PACK_TRIP_KEY,packTrip); closeCarryMenu(); renderPackList(); }
-function openCarryMenu(ci,ii,btn){ closeCarryMenu(); if(packView!=='trip') return; var c=packTrip[ci]; if(!c||!c.items||!c.items[ii]) return; var isOn=!!c.items[ii].carry; var menu=document.createElement('div'); menu.className='carry-menu'; menu.innerHTML='<div class="carry-menu-item" onclick="toggleCarryFlag('+ci+','+ii+')">'+(isOn?'從隨身包移除':'加入隨身包')+'</div><div class="carry-menu-item" onclick="editItemText('+ci+','+ii+');closeCarryMenu();">編輯文字</div>'; document.body.appendChild(menu); activeCarryMenu=menu; var rect=btn.getBoundingClientRect(); menu.style.top=(rect.bottom+window.scrollY+6)+'px'; menu.style.left=Math.max(8,rect.right+window.scrollX-menu.offsetWidth)+'px'; }
+function openCarryMenu(ci,ii,btn){ closeCarryMenu(); if(packView!=='trip') return; var c=packTrip[ci]; if(!c||!c.items||!c.items[ii]) return; var isOn=!!c.items[ii].carry; var menu=document.createElement('div'); menu.className='carry-menu'; menu.innerHTML='<div class="carry-menu-item" onclick="toggleCarryFlag('+ci+','+ii+')">'+(isOn?'從隨身包移除':'加入隨身包')+'</div>'; document.body.appendChild(menu); activeCarryMenu=menu; var rect=btn.getBoundingClientRect(); menu.style.top=(rect.bottom+window.scrollY+6)+'px'; menu.style.left=Math.max(8,rect.right+window.scrollX-menu.offsetWidth)+'px'; }
 function renderPackList(){
   var container=document.getElementById('pack-list-container'); if(!container) return;
   syncPackControlsUI();
@@ -1350,16 +1344,16 @@ function renderPackList(){
   container.innerHTML='';
   visible.forEach(function(catObj){
     var ci=active.indexOf(catObj); var isTemplate=(packView==='template');
-    var html='<div class="card-custom mb-3"><div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2"><span class="fw-bold text-primary"># '+catObj.category+'</span><div><button class="btn btn-sm btn-icon-mini" type="button" onclick="renameCategoryPrompt('+ci+')" title="重新命名"><i class="fas fa-pen" style="font-size:.72rem"></i></button><button class="btn btn-sm btn-outline-dark py-0" data-act="add-item" type="button" onclick="addItemToCat('+ci+')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-icon-mini ms-0" onclick="deleteCategory('+ci+')"><i class="fas fa-trash-alt"></i></button></div></div>';
+    var html='<div class="card-custom mb-3"><div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2"><span class="fw-bold text-primary"># '+catObj.category+'</span><div><button class="btn btn-sm btn-outline-dark py-0" data-act="add-item" type="button" onclick="addItemToCat('+ci+')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-icon-mini ms-0" onclick="deleteCategory('+ci+')"><i class="fas fa-trash-alt"></i></button></div></div>';
     var items=catObj.items||[]; var itemsToShow=(eCM&&!isTemplate)?items.filter(function(it){ return !!it.carry; }):items;
     if(!itemsToShow.length){ html+='<div class="text-center py-2 small text-muted">暫無項目</div>'; }
     else{ itemsToShow.forEach(function(item){
       var ii=items.indexOf(item); var cb=(!isTemplate&&item.carry)?'<span class="carry-badge">• 隨身</span>':''; var isCL=eCM&&!isTemplate;
       var ck=carryKey(catObj.category,item.text); var cc=!!carryCheckedMap[ck];
       var chk=isTemplate?'':(isCL?'<input type="checkbox" '+(cc?'checked':'')+' onclick="event.stopPropagation();" onchange="toggleCarryChecked(\''+catObj.category.replace(/'/g,"\\'")+'\',' +'\''+item.text.replace(/'/g,"\\'")+'\')">':'<input type="checkbox" '+(item.checked?'checked':''));
-      if(!isTemplate&&!isCL) chk+='>'; else if(isCL) chk+='>';
+      if(!isTemplate&&!isCL) chk+='>';
       var rowClick=(isTemplate||isCL)?'':'onclick="toggleItem('+ci+','+ii+')"';
-      var rbtns=isTemplate?'<button class="btn btn-sm text-muted" onclick="event.stopPropagation();editItemText('+ci+','+ii+')" title="編輯"><i class="fas fa-pen" style="font-size:.68rem"></i></button><button class="btn btn-sm text-muted" onclick="deleteSingleItem('+ci+','+ii+')">\xd7</button>':(isCL?'':'<button class="btn btn-sm text-muted carry-more-btn" onclick="event.stopPropagation();openCarryMenu('+ci+','+ii+',this)">⋯</button><button class="btn btn-sm text-muted" onclick="deleteSingleItem('+ci+','+ii+')">\xd7</button>');
+      var rbtns=isTemplate?'<button class="btn btn-sm text-muted" onclick="deleteSingleItem('+ci+','+ii+')">\xd7</button>':(isCL?'':'<button class="btn btn-sm text-muted carry-more-btn" onclick="event.stopPropagation();openCarryMenu('+ci+','+ii+',this)">⋯</button><button class="btn btn-sm text-muted" onclick="deleteSingleItem('+ci+','+ii+')">\xd7</button>');
       html+='<div class="pack-item d-flex align-items-center justify-content-between py-1"><div class="d-flex align-items-center flex-grow-1" '+rowClick+'>'+chk+'<span class="pack-text '+((!isTemplate&&!isCL&&item.checked)?'checked':'')+' '+(isTemplate?'':'ms-2')+'">'+item.text+'</span>'+cb+'</div><div class="d-flex align-items-center gap-1">'+rbtns+'</div></div>';
     }); }
     html+='</div>'; container.innerHTML+=html;
@@ -1408,6 +1402,8 @@ function confirmShareGenerate(btn){
     if(useExp) s+='記帳 '+exp.length+'筆 ';
     if(usePack){ s+='行李 '+pc.length+'類 '; }
     if(useFav) s+='收藏 '+fav.length+'項';
+    window._lastSyncCode = code;
+    document.getElementById('btn-download-code').style.display = 'block';    
     saveSyncLog('export','success',s.trim());
     var prev=document.getElementById('sync-share-preview'); if(prev) prev.innerHTML+='<hr class="my-2"><div class="text-success fw-bold">同步碼已產生 ✓</div><div class="small text-muted">產生時間：'+new Date().toLocaleString()+'</div>';
     btn.classList.add('is-success'); btn.disabled=true; setTimeout(function(){ btn.classList.remove('is-success'); btn.disabled=false; },1500);
@@ -1500,49 +1496,35 @@ function undoSync(){
   localStorage.removeItem('trip_sync_backup');
 }
 function pasteSyncCode(wEl){ navigator.clipboard.readText().then(function(t){ var inp=document.getElementById('sync-code-input'); if(inp) inp.value=t; wEl.classList.add('is-success'); setTimeout(function(){ wEl.classList.remove('is-success'); },900); }).catch(function(){ alert('無法讀取剪貼簿，請手動貼上'); }); }
-function handleSyncFileImport(ev){
-  var f=ev.target.files&&ev.target.files[0]; if(!f) return;
-  var reader=new FileReader();
-  reader.onload=function(e){ var inp=document.getElementById('sync-code-input'); if(inp) inp.value=(e.target.result||'').trim(); };
-  reader.onerror=function(){ alert('讀取檔案失敗，請確認檔案格式'); };
-  reader.readAsText(f,'utf-8');
-  ev.target.value='';
-}
-
-// ===== 常用連結 =====
-var QUICKLINKS_KEY='trip_custom_links';
-function loadQuickLinks(){
-  var raw=localStorage.getItem(QUICKLINKS_KEY);
-  if(!raw){
-    var def=[{label:'SBB 瑞士國鐵官網',url:'https://www.sbb.ch/en'},{label:'MeteoSwiss 瑞士天氣',url:'https://www.meteoswiss.admin.ch/'}];
-    localStorage.setItem(QUICKLINKS_KEY,JSON.stringify(def));
-    return def;
+document.getElementById('sync-file-input').addEventListener('change', function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    document.getElementById('sync-code-input').value = ev.target.result.trim();
+    e.target.value = '';
+  };
+  reader.readAsText(file, 'utf-8');
+});
+function downloadSyncCode(){
+  if(!window._lastSyncCode) return;
+  var file = new File([window._lastSyncCode], 'sync_code.txt', {type:'text/plain'});
+  if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+    navigator.share({
+      title: '行程同步碼',
+      text: '請用旅遊網站的「從TXT檔案匯入」功能匯入',
+      files: [file]
+    }).catch(function(){});
+  } else {
+    // 不支援的話 fallback 到下載
+    var url = URL.createObjectURL(file);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'sync_code.txt';
+    a.click();
+    URL.revokeObjectURL(url);
   }
-  try{ return JSON.parse(raw); }catch(e){ return []; }
 }
-function saveQuickLinks(links){ localStorage.setItem(QUICKLINKS_KEY,JSON.stringify(links)); }
-function renderQuickLinks(){
-  var c=document.getElementById('quicklinks-container'); if(!c) return;
-  var links=loadQuickLinks();
-  if(!links.length){ c.innerHTML='<div class="small text-muted">尚無連結，點下方新增</div>'; return; }
-  c.innerHTML=links.map(function(l,i){
-    return '<div class="d-flex align-items-center gap-2">'
-      +'<a href="'+escapeHtml(l.url)+'" target="_blank" class="btn btn-sm btn-secondary-soft text-start flex-fill">'+escapeHtml(l.label)+'</a>'
-      +'<button type="button" class="btn btn-sm btn-icon-mini" onclick="deleteQuickLink('+i+')" title="刪除"><i class="fas fa-trash-alt" style="font-size:.72rem"></i></button>'
-      +'</div>';
-  }).join('');
-}
-function addQuickLinkPrompt(){
-  var label=prompt('連結名稱：'); if(!label||!label.trim()) return;
-  var url=prompt('網址（需包含 https://）：'); if(!url||!url.trim()) return;
-  var links=loadQuickLinks(); links.push({label:label.trim(),url:url.trim()}); saveQuickLinks(links); renderQuickLinks();
-}
-function deleteQuickLink(i){
-  if(!confirm('確定要刪除此連結嗎？')) return;
-  var links=loadQuickLinks(); links.splice(i,1); saveQuickLinks(links); renderQuickLinks();
-}
-renderQuickLinks();
-
 // ===== 收藏 =====
 var favorites=JSON.parse(localStorage.getItem('trip_favorites')||'[]');
 function saveFavorites(){ localStorage.setItem('trip_favorites',JSON.stringify(favorites)); }
@@ -1642,8 +1624,8 @@ function toggleTheme(){ var html=document.documentElement; var cur=html.getAttri
 function updateThemeIcon(theme){ var btn=document.getElementById('themeBtn'); if(!btn) return; btn.innerHTML=theme==='dark'?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>'; }
 
 // ===== Today ===== 
-(function(){ var now=new Date(); var m=new Intl.DateTimeFormat('en-US',{month:'numeric',timeZone:'Europe/Berlin'}).format(now); var d=new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Europe/Berlin'}).format(now); var lbl=document.getElementById('todayDate'); if(lbl) lbl.textContent=m+'/'+d; })();
-function jumpToToday(){ var now=new Date(); var m=now.getMonth()+1,d=now.getDate(),y=now.getFullYear(); if(y===2026&&m===9&&d>=10&&d<=28){ var dayId='9'+d; var iNav=document.querySelector('.nav-item[onclick*="itinerary"]'); if(iNav) switchTab('itinerary',iNav); var tab=document.querySelector('.day-tab[onclick*="\''+dayId+'\'"]'); if(tab){ tab.click(); tab.scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'}); window.scrollTo({top:0,behavior:'smooth'}); } } }
+(function(){ var now=new Date(); var m=new Intl.DateTimeFormat('en-US',{month:'numeric',timeZone:'Asia/Seoul'}).format(now); var d=new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Asia/Seoul'}).format(now); var lbl=document.getElementById('todayDate'); if(lbl) lbl.textContent=m+'/'+d; })();
+function jumpToToday(){ var now=new Date(); var m=parseInt(new Intl.DateTimeFormat('en-US',{month:'numeric',timeZone:'Asia/Seoul'}).format(now)); var d=parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Asia/Seoul'}).format(now)); var y=now.getFullYear(); if(y===2026&&m===5&&d>=7&&d<=13){ var dayId='5'+d; var iNav=document.querySelector('.nav-item[onclick*="itinerary"]'); if(iNav) switchTab('itinerary',iNav); var tab=document.querySelector('.day-tab[onclick*="\''+dayId+'\'"]'); if(tab){ tab.click(); tab.scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'}); window.scrollTo({top:0,behavior:'smooth'}); } } }
 
 // ===== ScrollSpy =====
 function initScrollSpy(){
@@ -1663,15 +1645,22 @@ function initSyncCenterUI(){
 // ===== 初始化 =====
 function initializePage(){
   expenses=JSON.parse(localStorage.getItem('trip_v2026')||'[]');
+  // Load cached rates so budget page shows data immediately
+  try{
+    var c=JSON.parse(localStorage.getItem('trip_budget_rates_cache')||'null');
+    if(c&&c.rates){ rates=Object.assign({KRW:null,USD:null},c.rates); lastRateFetchedAt=c.at||0; ratesStatus='offline'; }
+  }catch(x){}
   initPacking(); render(); renderPackList(); renderSyncLogs(); updateLastSyncStatus(); updateLocalSummary();
+  renderTimeline();
   var undoBtn=document.getElementById('sync-undo-btn'); if(undoBtn){ undoBtn.disabled=!localStorage.getItem('trip_sync_backup'); }
-  // Apply fixed layout - use rAF to ensure browser has painted
   requestAnimationFrame(function(){
     applyFixedLayout();
     setTimeout(applyFixedLayout, 200);
     setTimeout(applyFixedLayout, 600);
   });
   initItemDrag();
+  // Fetch fresh rates in background
+  refreshRates(false);
 }
 
 document.addEventListener('blur',function(e){
@@ -1700,13 +1689,13 @@ function loadTripData(){
   var td;
   if(!raw){
     td={meta:{},days:[],details:{}};
-    for(var i=0;i<19;i++) td.days.push({sections:[{title:'行程',items:[]}]});
+    for(var i=0;i<7;i++) td.days.push({sections:[{title:'行程',items:[]}]});
     localStorage.setItem('tripData',JSON.stringify(td));
     return td;
   }
   td=JSON.parse(raw);
   if(!td.details) td.details={};
-  while(td.days.length<19) td.days.push({sections:[{title:'行程',items:[]}]});
+  while(td.days.length<7) td.days.push({sections:[{title:'行程',items:[]}]});
   return td;
 }
 
@@ -1818,9 +1807,10 @@ function renderSection(section,dayIndex,sectionIndex){
 
 function renderTimeline(){
   var tripData=loadTripData(); if(!tripData) return;
+  var koreanDays=['507','508','509','510','511','512','513'];
   tripData.days.forEach(function(day,dayIndex){
-    var dc=document.querySelector('#day-'+(910+dayIndex)+' .timeline-container'); if(!dc) return;
-    var dayNum=String(910+dayIndex);
+    var dayNum=koreanDays[dayIndex]; if(!dayNum) return;
+    var dc=document.querySelector('#day-'+dayNum+' .timeline-container'); if(!dc) return;
     var hotelEditHtml='';
     if(timelineEditMode){
       var hi=getHotelForDay(dayNum); var hn=hi?hi.name:''; var hm=hi?hi.map:'';
@@ -2005,8 +1995,8 @@ window.onload = function(){
   // Today 按鈕日期
   (function(){
     var now = new Date();
-    var euM = parseInt(new Intl.DateTimeFormat('en-US',{month:'numeric',timeZone:'Europe/Berlin'}).format(now));
-    var euD = parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Europe/Berlin'}).format(now));
+    var euM = parseInt(new Intl.DateTimeFormat('en-US',{month:'numeric',timeZone:'Asia/Seoul'}).format(now));
+    var euD = parseInt(new Intl.DateTimeFormat('en-US',{day:'numeric',timeZone:'Asia/Seoul'}).format(now));
     var el = document.getElementById('todayDate');
     if(el) el.textContent = euM+'/'+euD;
   })();
